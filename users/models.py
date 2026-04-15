@@ -9,4 +9,6 @@ class User(AbstractUser):
     gender = models.CharField(max_length=20, choices=(("erkak", "erkak"), ("ayol", "ayol")))
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
+    confirmation_code = models.CharField(max_length=6, blank=True, null=True)
+    confirmed = models.BooleanField(default=False)
     
