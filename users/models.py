@@ -11,4 +11,9 @@ class User(AbstractUser):
     city = models.CharField(max_length=50, blank=True, null=True)
     confirmation_code = models.CharField(max_length=6, blank=True, null=True)
     confirmed = models.BooleanField(default=False)
+
+    def in_login(self):
+        return self.confirmed and self.is_authenticated
+
+
     

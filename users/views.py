@@ -74,9 +74,18 @@ class LoginView(View):
         return render(request, 'login.html')
 
     def post(self, request):
-        pass
+        user = authenticate(
+            username=request.POST.get('username'),
+            password=request.POST.get('password')
+        )
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+
+        messages.error(request, "Telefon raqam yoki parolda xatolik bor!")
+        return render(request, 'login.html')
 
 
 def logout_view(request):
     logout(request)
-    return redirect('register')
+    return redirect('login')
